@@ -41,7 +41,7 @@ return (
             setSelectedOption(value);
             value !== 'Custom Prompt' && onUserSelect('topic', value);
         }}>
-        <SelectTrigger className="w-full mt-2 p-6 text-lg drop-shadow-md">
+        <SelectTrigger className="w-full mt-2 p-6 text-md drop-shadow-md">
             <SelectValue placeholder="Content-Type" />
         </SelectTrigger>
 
