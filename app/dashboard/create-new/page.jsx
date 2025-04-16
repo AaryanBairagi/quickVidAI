@@ -11,14 +11,14 @@ const CreateNew = () => {
   }
   return (
     <div className='md:px-20'>
-        <h2 className='font-bold text-2xl text-cyan-500'>
-            <div className='mt-10 shadow-md p-10'>
+        <h2 className='font-bold text-3xl text-cyan-500 drop-shadow-md'>Create New</h2>
+            <div className='shadow-md p-10'>
 
               {/* Select Topic  */}
               <SelectTopic onUserSelect={onHandleInputChange}/>
 
               {/* Select Style */}
-              <SelectStyleCom/>
+              <SelectStyleCom onUserSelect={onHandleInputChange}/>
 
               {/* Duration */}
               {/* <DurationCom/> */}
@@ -26,7 +26,7 @@ const CreateNew = () => {
               {/* Create Button */}
               
             </div>
-        </h2>
+        
     </div>
   )
 }

@@ -34,7 +34,7 @@ const SelectTopic = ({ onUserSelect }) => {
 
 return (
     <div>
-        <h2 className='font-bold text-2xl text-cyan-500 drop-shadow-md'>Content</h2>
+        <h2 className='font-bold text-xl text-cyan-500 drop-shadow-md'>Content</h2>
         <p className='text-zinc-800 drop-shadow-md'>Got a topic in mind for today’s video?</p>
 
     <Select onValueChange={(value) => {
