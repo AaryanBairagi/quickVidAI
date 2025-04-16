@@ -5,9 +5,13 @@ import SelectStyleCom from './_components/SelectStyle';
 import DurationCom from './_components/DurationCom';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
+const Ascript = 'It was bright sunny day haha i m BATMAN i m Dark Knight'
 const CreateNew = () => {
   const [formdata , setFormData] = useState([]);
+
+
   const onHandleInputChange=(fieldName , fieldValue)=>{
     console.log(fieldName, fieldValue);
     setFormData(prev=>({...prev , [fieldName]:fieldValue}));
@@ -15,7 +19,8 @@ const CreateNew = () => {
 
   
   const onCreateClickHandler=()=>{
-    getVideoScript();
+    // getVideoScript();
+    GenerateAudioFile(Ascript);
   }
 
   //Get the video script via Gemini
@@ -42,8 +47,9 @@ const CreateNew = () => {
     // })
     const result = await axios.post('/api/get-video-script', {
       prompt: prompt,
-    }).then(resp => {
-      console.log("Generated Scenes:", resp.data.result);
+    }).then(response => {
+      console.log("Generated Scenes:", response.data.result);
+      GenerateAudioFile(response.data.result);
       // You can now store scenes in state if you want
     }).catch(err => {
       console.error("Error:", err);
@@ -51,7 +57,21 @@ const CreateNew = () => {
     
   };
   
-
+  //Generate a MP3 audio file for the videoscript
+  const GenerateAudioFile = async(videoScriptData)=>{
+    let script = '';
+    const id = uuidv4();
+    // videoScriptData.forEach(item=>{
+    //   script=script+item.ContentText+' ';
+    // });
+    console.log(script);
+    await axios.post('/api/generate-audio' , {
+      text:videoScriptData,
+      id:id
+    }).then(response=>{
+      console.log(response.data);
+    });
+  }
   return (
     <div className='md:px-20'>
         <h2 className='font-bold text-3xl text-cyan-500 drop-shadow-md'>Create New</h2>
